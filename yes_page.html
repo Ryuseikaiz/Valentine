@@ -6,6 +6,49 @@
     <title>Knew you would say yes!</title>
     <link rel="stylesheet" href="./yes_style.css">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+    <style>
+        /* Tạo hình trái tim */
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            transform: rotate(-45deg);
+            animation: float 5s infinite ease-in-out;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart::after {
+            top: 0;
+            left: 10px;
+        }
+
+        /* Hiệu ứng bay */
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(-45deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(-45deg);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -24,6 +67,27 @@
                 origin: { y: 0.6 }
             });
         });
+
+        // Hàm tạo trái tim
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+
+            // Vị trí ngẫu nhiên
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's'; // Tốc độ bay ngẫu nhiên
+
+            // Thêm trái tim vào body
+            document.body.appendChild(heart);
+
+            // Xóa trái tim sau khi hiệu ứng kết thúc
+            setTimeout(() => {
+                heart.remove();
+            }, 5000); // 5 giây
+        }
+
+        // Tạo trái tim liên tục
+        setInterval(createHeart, 300); // Tạo trái tim mỗi 300ms
     </script>
 </body>
 </html>
