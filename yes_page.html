@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Knew you would say yes!</title>
     <link rel="stylesheet" href="./yes_style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -13,5 +14,16 @@
             <img src="https://media.tenor.com/elR_WRDBHIEAAAAM/cute-amagi-hiiro.gif">
         </div>
     </div>
+
+    <script>
+        // Kích hoạt hiệu ứng pháo hoa khi trang được tải
+        document.addEventListener('DOMContentLoaded', function() {
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+        });
+    </script>
 </body>
 </html>
