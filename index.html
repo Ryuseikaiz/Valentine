@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Will You Be My Valentine?</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         /* Tạo hình trái tim */
         .heart {
@@ -62,6 +63,40 @@
         </div>
     </div>
 
+    <audio id="bgm" loop>
+        <source src="bgm.mp3" type="audio/mpeg">
+    </audio>
+    
+    <button id="button">
+        <i class="fa fa-volume-up"></i> <!-- FontAwesome icon -->
+    </button>
+    
+    <script>
+        const button = document.querySelector("#button");
+        const icon = document.querySelector("#button > i");
+        const audio = document.querySelector("#bgm");
+    
+        // Thử tự động phát nhạc khi trang load
+        document.addEventListener("DOMContentLoaded", function () {
+            audio.volume = 0.2; // Giảm âm lượng để tránh bị chặn
+            audio.play().catch(error => console.log("Autoplay bị chặn:", error));
+        });
+    
+        // Bật/Tắt nhạc khi nhấn button
+        button.addEventListener("click", () => {
+            if (audio.paused) {
+                audio.play();
+                icon.classList.remove('fa-volume-up');
+                icon.classList.add('fa-volume-mute');
+            } else {
+                audio.pause();
+                icon.classList.remove('fa-volume-mute');
+                icon.classList.add('fa-volume-up');
+            }
+            button.classList.add("fade");
+        });
+    </script>
+    
     <script>
         // Hàm tạo trái tim
         function createHeart() {
